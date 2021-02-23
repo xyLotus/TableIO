@@ -63,8 +63,6 @@ namespace TableIO
             string horizontalCloserB = RepeatCharacter('=', longestValue+2);
             string fullHorizontalCloser = '+' + horizontalCloserA + '=' + horizontalCloserB + '+';
 
-            ConstructTableHeader(header, fullHorizontalCloser);
-
             // Writing Top Closer
             Console.WriteLine(fullHorizontalCloser);
 
@@ -95,48 +93,6 @@ namespace TableIO
 
             // setting attribute
             this.Length = localLineCount;
-        }
-
-        private void ConstructTableHeader(string headerParam, string topBotCloser)
-        {
-            // Checking if default set value parameter is not empty
-            if (headerParam.Length != 0)
-            {
-                // Checking if length of header is not bigger than the fullHorizontal Closer (T/B)
-                int eqCount = 0;
-                foreach (char character in topBotCloser)
-                {
-                    if (character == '=')
-                    {
-                        eqCount++;
-                    }
-                }
-
-                if (!(headerParam.Length > eqCount))
-                {
-                    string customHeader = "";
-                    if (headerParam.Length == eqCount)
-                    {
-                        customHeader = '+' + headerParam + '+';
-                    } else
-                    {
-                        int difference = headerParam.Length - eqCount;
-                        if (difference % 2 == 0)
-                        {
-                            
-                        }
-
-                    }
-
-                    Console.WriteLine(customHeader);
-                }
-                else
-                {
-                    // Outputting Error & Quitting after output
-                    Console.WriteLine("[ERROR] Header given in parameter, 'header' is longer than the default header.");
-                    System.Environment.Exit(1);
-                }
-            }
         }
 
         private int[] GetLongestItem(Dictionary<string, string> givenDict)
